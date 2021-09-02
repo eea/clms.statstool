@@ -6,6 +6,8 @@ from setuptools import setup, find_packages
 
 NAME = "clms.statstool"
 PATH = NAME.split(".") + ["version.txt"]
+
+# pylint: disable=R1732
 VERSION = open(join(*PATH)).read().strip()
 
 # pylint: disable=R1732
