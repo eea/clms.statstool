@@ -14,6 +14,7 @@ class EEAFixture(PloneSandboxLayer):
 
     def setUpZope(self, app, configurationContext):
         """Setup Zope"""
+        # pylint: disable=C0415
         import clms.statstool
 
         self.loadZCML(package=clms.statstool)

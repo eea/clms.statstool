@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+"""
+Stats Tool implementation
+"""
 from zope.interface import implementer
 from zope.interface import Interface
 
@@ -8,5 +11,5 @@ class IDownloadStatsUtility(Interface):
 
 
 @implementer(IDownloadStatsUtility)
-class DownloadStatsUtility(object):
+class DownloadStatsUtility:
     """ Download stats handling methods """
