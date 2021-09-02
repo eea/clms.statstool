@@ -8,7 +8,7 @@ clms.statstool
   :target: https://ci.eionet.europa.eu/job/eea/job/clms.statstool/job/master/display/redirect
   :alt: Master
 
-The clms.statstool is a Plone add-on
+The clms.statstool is a Plone add-on to save the download stats of the CLMS portal
 
 .. contents::
 
@@ -16,9 +16,8 @@ The clms.statstool is a Plone add-on
 Main features
 =============
 
-1. Easy to install/uninstall via Site Setup > Add-ons
-2.
-3.
+It provides several methods to register download requests from users.
+It provides several REST API endpoints to request the download requests
 
 Install
 =======
@@ -32,7 +31,6 @@ Install
 
 * You can download a sample buildout from:
 
-  - https://github.com/eea/clms.statstool/tree/master/buildouts/plone4
   - https://github.com/eea/clms.statstool/tree/master/buildouts/plone5
 
 * Or via docker::
@@ -45,14 +43,12 @@ Install
 Buildout installation
 =====================
 
-- `Plone 4+ <https://github.com/eea/clms.statstool/tree/master/buildouts/plone4>`_
 - `Plone 5+ <https://github.com/eea/clms.statstool/tree/master/buildouts/plone5>`_
 
 
 Source code
 ===========
 
-- `Plone 4+ on github <https://github.com/eea/clms.statstool>`_
 - `Plone 5+ on github <https://github.com/eea/clms.statstool>`_
 
 
@@ -65,7 +61,7 @@ Eggs repository
 
 Plone versions
 ==============
-It has been developed and tested for Plone 4 and 5. See buildouts section above.
+It has been developed and tested for Plone 5 and python 3. See buildouts section above.
 
 
 How to contribute
