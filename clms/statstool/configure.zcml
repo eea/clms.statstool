@@ -7,6 +7,12 @@
 
   <include file="profiles.zcml" />
   <include package=".browser" />
+  <include package=".api" />
   <include package=".upgrades" />
+
+  <utility
+    provides=".utility.IDownloadStatsUtility"
+    factory=".utility.DownloadStatsUtility"
+    />
 
 </configure>
