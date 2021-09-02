@@ -8,6 +8,7 @@ NAME = "clms.statstool"
 PATH = NAME.split(".") + ["version.txt"]
 VERSION = open(join(*PATH)).read().strip()
 
+# pylint: disable=R1732
 setup(
     name=NAME,
     version=VERSION,
