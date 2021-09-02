@@ -17,7 +17,7 @@ Main features
 =============
 
 It provides several methods to register download requests from users.
-It provides several REST API endpoints to request the download requests
+It provides several REST API endpoints to request the download requests (WIP)
 
 Install
 =======
