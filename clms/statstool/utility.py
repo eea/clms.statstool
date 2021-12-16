@@ -14,8 +14,6 @@ ANNOTATION_KEY = "clms.downloadtool"
 class IDownloadStatsUtility(Interface):
     """ interface for the download stats utility """
 
-    pass
-
 
 @implementer(IDownloadStatsUtility)
 class DownloadStatsUtility:
