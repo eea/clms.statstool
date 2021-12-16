@@ -11,16 +11,18 @@ After doing all the relevant operations we should set the HTTP status of the res
 it will be an HTTP 200 OK), and return the JSON information needed by as a python dict. Plone REST API
 will handle that dict and encode it as a proper JSON response.
 """
-from plone import api
 from plone.restapi.services import Service
 from plone.restapi.deserializer import json_body
 
 from zope.component import getUtility
-from clms.downloadtool.utility import IDownloadToolUtility
+from clms.statstool.utility import IDownloadStatsUtility
 
 
 class RegisterItemPost(Service):
+    """ post service """
+
     def reply(self):
+        """ json response """
         body = json_body(self.request)
 
         start = body.get("Start")
@@ -32,7 +34,7 @@ class RegisterItemPost(Service):
         transformation_size = body.get("TransformationSize")
         transformation_result_data = body.get("TransformationResultData")
         successful = body.get("Successful")
-        
+
         response_json = {}
         response_json["Start"] = start
         response_json["User"] = user
@@ -44,7 +46,7 @@ class RegisterItemPost(Service):
         response_json["TransformationResultData"] = transformation_result_data
         response_json["Successful"] = successful
 
-        utility = getUtility(IDownloadToolUtility)
+        utility = getUtility(IDownloadStatsUtility)
         response_json = utility.register_item(response_json)
 
         self.request.response.setStatus(201)
