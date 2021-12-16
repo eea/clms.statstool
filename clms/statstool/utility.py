@@ -31,7 +31,6 @@ class DownloadStatsUtility:
         if annotations.get(ANNOTATION_KEY, None) is None:
             registry = {str(task_id): data_object}
             annotations[ANNOTATION_KEY] = registry
-
         else:
             registry = annotations.get(ANNOTATION_KEY, PersistentMapping())
             registry[str(task_id)] = data_object
