@@ -4,6 +4,8 @@ For HTTP GET operations we can use standard HTTP parameter passing
 (through the URL)
 
 """
+import datetime
+
 from logging import getLogger
 
 from plone import api
@@ -11,7 +13,6 @@ from plone.restapi.services import Service
 
 from zope.component import getUtility
 from clms.statstool.utility import IDownloadStatsUtility
-import datetime
 
 log = getLogger(__name__)
 
