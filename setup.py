@@ -17,9 +17,9 @@ setup(
     description="An add-on for Plone to save download stats of CLSM",
     long_description_content_type="text/x-rst",
     long_description=(
-        open("README.rst").read() +
-        "\n" +
-        open(os.path.join("docs", "HISTORY.txt")).read()
+        open("README.rst").read()
+        + "\n"
+        + open(os.path.join("docs", "HISTORY.txt")).read()
     ),
     classifiers=[
         "Environment :: Web Environment",
@@ -45,6 +45,7 @@ setup(
     install_requires=[
         "setuptools",
         # -*- Extra requirements: -*-
+        "plone.restapi",
     ],
     extras_require={
         "test": [

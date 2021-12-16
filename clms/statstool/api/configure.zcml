@@ -6,6 +6,7 @@
 
   -*- extra stuff goes here -*-
 
+  <include package="plone.restapi" />
   <include package=".services" />
 
 
