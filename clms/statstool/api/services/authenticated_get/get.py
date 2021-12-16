@@ -13,9 +13,6 @@ from zope.component import getUtility
 from clms.statstool.utility import IDownloadStatsUtility
 import datetime
 
-# logger, do log.info('XXXX') to print in the console
-from logging import getLogger
-
 log = getLogger(__name__)
 
 
