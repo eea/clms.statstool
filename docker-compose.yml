@@ -1,0 +1,21 @@
+version: "2"
+services:
+  ploneapi:
+    image: bmeugis/clms.downloadtool:2.0
+    ports:
+      - 80:8080
+    environment:
+      CORS_ALLOW_ORIGIN: "*"
+    depends_on:
+      - memcached
+    volumes:
+      - data:/data
+      - data:/plone/instance/src/clms.downloadtool/
+  memcached:
+    image: memcached
+    command:
+      - "-m"
+      - "512"
+volumes:
+  data:
+    driver: local

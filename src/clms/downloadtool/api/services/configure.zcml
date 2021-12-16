@@ -1,0 +1,15 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="clms.downloadtool">
+
+  -*- extra stuff goes here -*-
+<include package=".authenticated_get" />
+<include package=".register_item" />
+<include package=".get_item" />
+<include package=".patch_item" />
+
+<include package=".user_get" />
+</configure>
+

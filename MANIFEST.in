@@ -1,7 +1,4 @@
-include *.md *.rst *.txt
+graft src/clms
 graft docs
-graft clms
-global-exclude *pyc
-global-exclude *~
-global-exclude *.un~
-global-include *.mo
+include *.rst
+global-exclude *.pyc

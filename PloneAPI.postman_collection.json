@@ -1,0 +1,316 @@
+{
+	"info": {
+		"_postman_id": "0eb56d83-eb31-411a-9497-c8d76099b933",
+		"name": "PloneAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "@datarequest_search",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/Plone2/@datarequest_search?user_id=3&status=In_progress",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Plone2",
+						"@datarequest_search"
+					],
+					"query": [
+						{
+							"key": "user_id",
+							"value": "3"
+						},
+						{
+							"key": "status",
+							"value": "In_progress"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "@datarequest_post",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"UserID\": \"3\",\n    \"DatasetID\": \"123\",\n    \"DatasetFormat\": \"Shape\",\n    \"DatasetPath\": \"\\\\cws-copernicus/shape.zip\",\n    \"OutputFormat\": \"GDB\",\n    \"OutputGCS\": \"EPGS:4326\",\n    \"NUTSID\": \"BE2\",\n    \"BoundingBox\": [\n        33,\n        5,\n        62,\n        -3\n    ],\n    \"TemporalFilter\": {\n        \"StartDate\": \"1989-1-25\",\n        \"EndDate\": \"1989-1-25\"\n    }\n}\n\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/Plone2/@datarequest_post",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Plone2",
+						"@datarequest_post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "@datarequest_delete",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"task_id\": 62479036085,\n    \"user_id\": 3\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/Plone2/@datarequest_delete",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Plone2",
+						"@datarequest_delete"
+					],
+					"query": [
+						{
+							"key": "task_id",
+							"value": "5151",
+							"disabled": true
+						},
+						{
+							"key": "user_id",
+							"value": "123154",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "@dataset_get",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/Plone2/@dataset_get?dataset_title=swafdg shstewg",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Plone2",
+						"@dataset_get"
+					],
+					"query": [
+						{
+							"key": "dataset_title",
+							"value": "swafdg shstewg"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "@datarequest_status_get",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/Plone2/@datarequest_status_get?task_id=32628031400",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Plone2",
+						"@datarequest_status_get"
+					],
+					"query": [
+						{
+							"key": "task_id",
+							"value": "32628031400"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "@datarequest_status_patch",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"dataset_id\": \"431411\",\n    \"download_format\": \"3\",\n    \"spatial_extent\": [\n        15.2356,\n        -15.38584,\n        30.65845,\n        -30.42458\n    ],\n    \"task_id\": 23235556259,\n    \"temporal_extent\": {\n        \"end_date\": \"4-13-2002\",\n        \"start_date\": \"20-11-1952\"\n    },\n    \"user_id\": \"3\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/Plone2/@datarequest_status_patch",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Plone2",
+						"@datarequest_status_patch"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
