@@ -17,8 +17,10 @@ log = getLogger(__name__)
 
 
 class AuthenticatedGet(Service):
-    def reply(self):
+    """ JSON response """
 
+    def reply(self):
+        """ JSON response """
         # key = self.request.get("key")
         user = str(api.user.get_current())
         utility = getUtility(IDownloadStatsUtility)
