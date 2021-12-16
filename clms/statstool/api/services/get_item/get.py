@@ -4,16 +4,10 @@ For HTTP GET operations we can use standard HTTP parameter passing
 (through the URL)
 
 """
-from plone import api
 from plone.restapi.services import Service
 
 from zope.component import getUtility
 from clms.statstool.utility import IDownloadStatsUtility
-
-# logger, do log.info('XXXX') to print in the console
-from logging import getLogger
-
-log = getLogger(__name__)
 
 
 class GetItem(Service):
