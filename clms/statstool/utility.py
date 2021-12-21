@@ -8,7 +8,7 @@ from zope.interface import implementer
 from zope.interface import Interface
 from zope.site.hooks import getSite
 
-ANNOTATION_KEY = "clms.downloadtool"
+ANNOTATION_KEY = "clms.statstool"
 
 
 class IDownloadStatsUtility(Interface):
