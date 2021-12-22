@@ -15,7 +15,7 @@ The clms.statstool is a Plone add-on to save the download stats of the CLMS port
 
 Main features
 =============
-
+ 
 It provides several methods to register download requests from users.
 It provides several REST API endpoints to request the download requests (WIP)
 
