@@ -49,6 +49,9 @@ setup(
     extras_require={
         "test": [
             "plone.app.testing",
+            "plone.app.contenttypes",
+            "plone.app.robotframework",
+            "plone.restapi[test]",
         ],
     },
     entry_points="""
