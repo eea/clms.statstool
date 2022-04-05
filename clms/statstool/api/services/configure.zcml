@@ -4,8 +4,6 @@
     xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="clms.statstool">
 
-  -*- extra stuff goes here -*-
-<include package=".authenticated_get" />
 <include package=".register_item" />
 <include package=".get_item" />
 <include package=".patch_item" />
