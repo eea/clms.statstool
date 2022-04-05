@@ -34,7 +34,7 @@ class DownloadStatsUtility:
             registry[str(task_id)] = data_object
             annotations[ANNOTATION_KEY] = registry
 
-        return data_object
+        return {str(task_id): data_object}
 
     def get_item(self, task_id):
         """ Get the stats of the given task_id """
@@ -45,20 +45,20 @@ class DownloadStatsUtility:
             return "Error, task not found"
         return registry.get(task_id)
 
-    def patch_item(self, dataObject, task_id):
+    def patch_item(self, data_object, task_id):
         """ Modify the stats of the given task_id """
         site = getSite()
         annotations = IAnnotations(site)
         registry = annotations.get(ANNOTATION_KEY, PersistentMapping())
-        tempObject = {}
+        temp_object = {}
 
         if task_id not in registry:
             return "Error, task_id not registered"
 
-        tempObject = {**registry[task_id], **dataObject}
+        temp_object = {**registry[task_id], **data_object}
 
-        registry[str(task_id)] = tempObject
+        registry[str(task_id)] = temp_object
 
         annotations[ANNOTATION_KEY] = registry
 
-        return tempObject
+        return temp_object
