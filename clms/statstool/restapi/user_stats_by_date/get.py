@@ -37,8 +37,8 @@ class UserStatsByDate(Service):
                         user_data = {}
                         user_data = dict(
                             registration_date=login_time_date_isoformat,
-                            # pylint-disable: line-too-long
-                            professional_thematic_domains=get_professional_thematic_domains(
+                            # pylint: disable=line-too-long
+                            professional_thematic_domains=get_professional_thematic_domains(  # noqa: E501
                                 user.getProperty(
                                     "professional_thematic_domain"
                                 )
