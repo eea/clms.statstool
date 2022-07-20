@@ -8,7 +8,7 @@ from zope.interface import implementer
 
 
 @implementer(ICatalogFactory)
-class StatsCatalogFactory(object):
+class StatsCatalogFactory:
     """catalog factory"""
 
     def __call__(self, context=None):
