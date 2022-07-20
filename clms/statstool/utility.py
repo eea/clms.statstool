@@ -2,13 +2,12 @@
 """
 A utility to manage the download stats
 """
-from plone import api
-from zope.interface import implementer
-from zope.interface import Interface
-from souper.soup import get_soup
 from datetime import datetime
-from souper.soup import Record
+
+from plone import api
 from repoze.catalog.query import Eq
+from souper.soup import Record, get_soup
+from zope.interface import Interface, implementer
 
 ANNOTATION_KEY = "clms.statstool"
 SOUP_NAME = "clms.statstool.soup"

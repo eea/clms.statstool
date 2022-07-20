@@ -1,3 +1,5 @@
+""" catalog implementation for soup"""
+# -*- coding: utf-8 -*-
 from repoze.catalog.catalog import Catalog
 from repoze.catalog.indexes.field import CatalogFieldIndex
 from souper.interfaces import ICatalogFactory
@@ -7,7 +9,10 @@ from zope.interface import implementer
 
 @implementer(ICatalogFactory)
 class StatsCatalogFactory(object):
+    """catalog factory"""
+
     def __call__(self, context=None):
+        """create and return a catalog"""
         catalog = Catalog()
         idindexer = NodeAttributeIndexer("TaskID")
         userindexer = NodeAttributeIndexer("User")
