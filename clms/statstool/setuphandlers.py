@@ -14,6 +14,10 @@ class HiddenProfiles:
             "clms.statstool:uninstall",
         ]
 
+    def getNonInstallableProducts(self):
+        """Hide upgrade steps from installable product list"""
+        return ["clms.statstool.upgrades"]
+
 
 def post_install(context):
     """Post install script"""
