@@ -5,6 +5,8 @@
 
   <i18n:registerTranslations directory="locales" />
 
+  <include package="souper.plone" />
+
   <include file="profiles.zcml" />
   <include file="permissions.zcml" />
   <include package=".restapi" />
