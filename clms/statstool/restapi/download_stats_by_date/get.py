@@ -7,12 +7,12 @@ from datetime import datetime
 from plone import api
 from plone.restapi.services import Service
 from zope.component import getUtility
-from zope.schema.interfaces import IVocabularyFactory
-
-from clms.statstool.utility import IDownloadStatsUtility
-from zope.site.hooks import getSite
 from zope.globalrequest import getRequest
 from zope.i18n import translate
+from zope.schema.interfaces import IVocabularyFactory
+from zope.site.hooks import getSite
+
+from clms.statstool.utility import IDownloadStatsUtility
 
 
 def get_professional_thematic_domains(items):
