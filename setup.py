@@ -46,7 +46,7 @@ setup(
         # -*- Extra requirements: -*-
         "plone.restapi",
         "souper.plone",
-        "node==0.9.24",
+        "node==0.9.25",
         "node.ext.ugm==0.9.12",
         "node.ext.zodb==1.4",
         "clms.addon",
