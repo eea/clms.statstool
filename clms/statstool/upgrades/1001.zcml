@@ -1,0 +1,32 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+  >
+
+
+  <genericsetup:registerProfile
+    name="1001"
+    title="new control panel and registry"
+    directory="1001"
+    description='Configuration for version 1001'
+    for="Products.CMFPlone.interfaces.IMigratingPloneSiteRoot"
+    provides="Products.GenericSetup.interfaces.EXTENSION" />
+
+
+  <genericsetup:upgradeSteps
+    source="1.0"
+    destination="1001"
+    profile="clms.statstool:default">
+      <genericsetup:upgradeStep title="New role and permission to query stats"
+      description=""
+      handler=".v1001.upgrade" />
+
+
+      <genericsetup:upgradeDepends title="New role and permission to query stats"
+      description=""
+      import_profile="clms.statstool.upgrades:1001" />
+
+
+  </genericsetup:upgradeSteps>
+
+</configure>

@@ -3,11 +3,8 @@
 A utility to manage the download stats
 """
 from plone import api
-from persistent.mapping import PersistentMapping
-from zope.annotation.interfaces import IAnnotations
 from zope.interface import implementer
 from zope.interface import Interface
-from zope.site.hooks import getSite
 from souper.soup import get_soup
 from datetime import datetime
 from souper.soup import Record
@@ -54,28 +51,11 @@ class DownloadStatsUtility:
         soup = self.get_soup()
         return {str(task_id): data_object}
 
-    # def old_register_item(self, data_object):
-    #     """register a stats value"""
-    #     site = getSite()
-    #     annotations = IAnnotations(site)
-    #     task_id = data_object["TaskID"]
-    #     del data_object["TaskID"]
-
-    #     if annotations.get(ANNOTATION_KEY, None) is None:
-    #         registry = {str(task_id): data_object}
-    #         annotations[ANNOTATION_KEY] = registry
-    #     else:
-    #         registry = annotations.get(ANNOTATION_KEY, PersistentMapping())
-    #         registry[str(task_id)] = data_object
-    #         annotations[ANNOTATION_KEY] = registry
-
-    #     return {str(task_id): data_object}
-
     def get_item(self, task_id):
         """Get the stats of the given task_id"""
 
         soup = self.get_soup()
-        records = soup.query(Eq("TaskId", task_id), with_size=True)
+        records = soup.query(Eq("TaskID", task_id), with_size=True)
         size = next(records)
         if size.total >= 1:
             if size.total > 1:
@@ -87,24 +67,15 @@ class DownloadStatsUtility:
                     "Several records found for the same taskid: %s", task_id
                 )
 
-            record = records[0]
+            record = next(records)
             return dict(record.attrs)
 
         return "Error, task not found"
 
-    # def old_get_item(self, task_id):
-    #     """Get the stats of the given task_id"""
-    #     site = getSite()
-    #     annotations = IAnnotations(site)
-    #     registry = annotations.get(ANNOTATION_KEY, PersistentMapping())
-    #     if task_id not in registry:
-    #         return "Error, task not found"
-    #     return registry.get(task_id)
-
     def patch_item(self, data_object, task_id):
         """Modify the stats of the given task_id"""
         soup = self.get_soup()
-        records = soup.query(Eq("TaskId", task_id), with_size=True)
+        records = soup.query(Eq("TaskID", task_id), with_size=True)
         size = next(records)
         if size.total >= 1:
             if size.total > 1:
@@ -119,29 +90,11 @@ class DownloadStatsUtility:
             data_object["item_update_date"] = get_current_date()
             data_object["item_update_datetime"] = get_current_datetime()
 
-            record = records[0]
+            record = next(records)
             record.attrs.update(data_object)
             soup.reindex(records=[record])
 
             return data_object
-
-    # def old_patch_item(self, data_object, task_id):
-    #     """Modify the stats of the given task_id"""
-    #     site = getSite()
-    #     annotations = IAnnotations(site)
-    #     registry = annotations.get(ANNOTATION_KEY, PersistentMapping())
-    #     temp_object = {}
-
-    #     if task_id not in registry:
-    #         return "Error, task_id not registered"
-
-    #     temp_object = {**registry[task_id], **data_object}
-
-    #     registry[str(task_id)] = temp_object
-
-    #     annotations[ANNOTATION_KEY] = registry
-
-    #     return temp_object
 
     def search_items_by_date(self, date):
         """given a date in ISO 8601 format, look for all download requests
@@ -153,3 +106,8 @@ class DownloadStatsUtility:
             results.append(dict(record.attrs))
 
         return results
+
+    def delete_data(self):
+        """delete all stats data"""
+        soup = self.get_soup()
+        soup.clear()
