@@ -92,7 +92,7 @@ class DownloadStatsUtility:
 
             return data_object
 
-        return {}
+        return "Error, task_id not registered"
 
     def search_items_by_date(self, date):
         """given a date in ISO 8601 format, look for all download requests
