@@ -3,6 +3,7 @@
 A utility to manage the download stats
 """
 from datetime import datetime
+from logging import getLogger
 
 from plone import api
 from repoze.catalog.query import Eq
@@ -59,8 +60,6 @@ class DownloadStatsUtility:
         if size.total >= 1:
             if size.total > 1:
                 # This should not happen
-                from logging import getLogger
-
                 log = getLogger(__name__)
                 log.info(
                     "Several records found for the same taskid: %s", task_id
@@ -79,8 +78,6 @@ class DownloadStatsUtility:
         if size.total >= 1:
             if size.total > 1:
                 # This should not happen
-                from logging import getLogger
-
                 log = getLogger(__name__)
                 log.info(
                     "Several records found for the same taskid: %s", task_id
