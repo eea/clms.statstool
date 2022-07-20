@@ -45,6 +45,7 @@ setup(
         "setuptools",
         # -*- Extra requirements: -*-
         "plone.restapi",
+        "souper.plone",
     ],
     extras_require={
         "test": [

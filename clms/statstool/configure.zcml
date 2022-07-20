@@ -13,4 +13,9 @@
     factory=".utility.DownloadStatsUtility"
     />
 
+  <utility
+      factory=".catalog.StatsCatalogFactory"
+      name="clms.statstool.soup" />
+
+
 </configure>
