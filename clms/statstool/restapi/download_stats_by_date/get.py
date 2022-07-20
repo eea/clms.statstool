@@ -7,27 +7,9 @@ from datetime import datetime
 from plone import api
 from plone.restapi.services import Service
 from zope.component import getUtility
-from zope.globalrequest import getRequest
-from zope.i18n import translate
-from zope.schema.interfaces import IVocabularyFactory
-from zope.site.hooks import getSite
 
 from clms.statstool.utility import IDownloadStatsUtility
-
-
-def get_professional_thematic_domains(items):
-    """get the domain names checking the vocabulary"""
-    site = getSite()
-    voc = getUtility(
-        IVocabularyFactory,
-        name="collective.taxonomy.userprofileprofessionalthematicdomain",
-    )(site)
-    result = []
-    for item in items:
-
-        term = voc.getTerm(item)
-        result.append(translate(term.title, context=getRequest()))
-    return result
+from clms.statstool.restapi.utils import get_professional_thematic_domains
 
 
 def decorate_item(item):
