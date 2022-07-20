@@ -25,7 +25,9 @@ class UserStatsByDate(Service):
             results = []
             for user in api.user.get_users():
                 try:
-                    login_time = user.getProperty("login_time").ISO8601()
+                    login_time = user.getProperty(
+                        "initial_login_time"
+                    ).ISO8601()
                     dt_login_time = datetime.fromisoformat(login_time)
                     login_time_date_isoformat = (
                         dt_login_time.date().isoformat()
@@ -35,6 +37,7 @@ class UserStatsByDate(Service):
                         user_data = {}
                         user_data = dict(
                             registration_date=login_time_date_isoformat,
+                            # pylint-disable: line-too-long
                             professional_thematic_domains=get_professional_thematic_domains(
                                 user.getProperty(
                                     "professional_thematic_domain"
