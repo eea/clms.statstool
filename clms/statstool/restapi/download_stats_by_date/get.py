@@ -49,7 +49,7 @@ def decorate_item(item):
         ] = get_professional_thematic_domains(
             user.getProperty("professional_thematic_domain")
         )
-        new_item["country"] = user.getProperty("country")
+        new_item["user_country"] = user.getProperty("country")
 
     return new_item
 
