@@ -39,17 +39,12 @@ def decorate_item(item):
 
     username = item.get("User", "")
     new_item["user"] = username
-    new_item["user_professional_thematic_domain"] = ""
-    new_item["user_country"] = ""
-
-    user = api.user.get(username=username)
-    if user:
-        new_item[
-            "user_professional_thematic_domain"
-        ] = get_professional_thematic_domains(
-            user.getProperty("professional_thematic_domain")
-        )
-        new_item["user_country"] = user.getProperty("country")
+    new_item["user_country"] = item.get("user_country", "")
+    new_item["user_affiliation"] = item.get("user_affiliation", "")
+    new_item["user_thematic_activity"] = item.get("user_thematic_activity", "")
+    new_item["user_sector_of_activity"] = item.get(
+        "user_sector_of_activity", ""
+    )
 
     return new_item
 
