@@ -4,12 +4,10 @@ REST API endpoint to query download stats by date
 # -*- coding: utf-8 -*-
 from datetime import datetime
 
-from plone import api
 from plone.restapi.services import Service
 from zope.component import getUtility
 
 from clms.statstool.utility import IDownloadStatsUtility
-from clms.statstool.restapi.utils import get_professional_thematic_domains
 
 
 def decorate_item(item):
