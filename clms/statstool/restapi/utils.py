@@ -1,5 +1,7 @@
 """ util methods"""
 # -*- coding: utf-8 -*-
+from logging import getLogger
+
 from zope.component import getUtility
 from zope.globalrequest import getRequest
 from zope.i18n import translate
@@ -18,11 +20,9 @@ def get_value_from_vocabulary(item, vocabulary_name):
         term = voc.getTerm(item)
         return translate(term.title, context=getRequest())
     except KeyError:
-        from logging import getLogger
-
         log = getLogger(__name__)
         log.info(
-            "Term not found in the vocabulary: %s %s", (item, vocabulary_name)
+            "Term not found in the vocabulary: %s %s", item, vocabulary_name
         )
         return item
 
