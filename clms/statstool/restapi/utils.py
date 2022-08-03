@@ -7,37 +7,49 @@ from zope.schema.interfaces import IVocabularyFactory
 from zope.site.hooks import getSite
 
 
-def get_values_from_vocabulary(items, vocabulary_name):
+def get_value_from_vocabulary(item, vocabulary_name):
     """get the domain names checking the vocabulary"""
     site = getSite()
     voc = getUtility(
         IVocabularyFactory,
         name=vocabulary_name,
     )(site)
-    result = []
-    for item in items:
-
+    try:
         term = voc.getTerm(item)
-        result.append(translate(term.title, context=getRequest()))
-    return result
+        return translate(term.title, context=getRequest())
+    except KeyError:
+        from logging import getLogger
+
+        log = getLogger(__name__)
+        log.info(
+            "Term not found in the vocabulary: %s %s", (item, vocabulary_name)
+        )
+        return item
 
 
-def get_professional_thematic_domains(items):
+def get_country(item):
     """get the values from the relevant vocabulary"""
-    return get_values_from_vocabulary(
-        items, "collective.taxonomy.userprofileprofessionalthematicdomain"
+    return get_value_from_vocabulary(
+        item, "collective.taxonomy.user_profile_country"
     )
 
 
-def get_institutional_domains(items):
+def get_affiliation(item):
     """get the values from the relevant vocabulary"""
-    return get_values_from_vocabulary(
-        items, "collective.taxonomy.userprofileinstitutionaldomain"
+    return get_value_from_vocabulary(
+        item, "collective.taxonomy.user_profile_affiliation"
     )
 
 
-def get_purposes(items):
+def get_thematic_activity(item):
     """get the values from the relevant vocabulary"""
-    return get_values_from_vocabulary(
-        items, "collective.taxonomy.userprofileproductuseintention"
+    return get_value_from_vocabulary(
+        item, "collective.taxonomy.user_profile_thematic_activity"
+    )
+
+
+def get_sector_of_activity(item):
+    """get the values from the relevant vocabulary"""
+    return get_value_from_vocabulary(
+        item, "collective.taxonomy.user_profile_sector_of_activity"
     )

@@ -6,5 +6,6 @@
   <include package=".download_stats_by_date" />
   <include package=".user_stats_by_date" />
   <include package=".delete_stats" />
+  <include package=".user_stats" />
 
 </configure>

@@ -7,9 +7,10 @@ from plone import api
 from plone.restapi.services import Service
 
 from clms.statstool.restapi.utils import (
-    get_institutional_domains,
-    get_professional_thematic_domains,
-    get_purposes,
+    get_country,
+    get_affiliation,
+    get_thematic_activity,
+    get_sector_of_activity,
 )
 
 log = getLogger(__name__)
@@ -38,20 +39,15 @@ class UserStatsByDate(Service):
                         user_data = dict(
                             registration_date=login_time_date_isoformat,
                             # pylint: disable=line-too-long
-                            professional_thematic_domains=get_professional_thematic_domains(  # noqa: E501
-                                user.getProperty(
-                                    "professional_thematic_domain"
-                                )
+                            country=get_country(user.getProperty("country")),
+                            affiliation=get_affiliation(
+                                user.getProperty("affiliation")
                             ),
-                            institutional_domain=get_institutional_domains(
-                                user.getProperty(
-                                    "organisation_institutional_domain"
-                                )
+                            thematic_activity=get_thematic_activity(
+                                user.getProperty("thematic_activity")
                             ),
-                            purposes=get_purposes(
-                                user.getProperty(
-                                    "how_do_you_intend_to_use_the_products"
-                                )
+                            sector_of_activity=get_sector_of_activity(
+                                user.getProperty("sector_of_activity")
                             ),
                         )
                         results.append(user_data)
