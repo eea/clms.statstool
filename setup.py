@@ -45,10 +45,11 @@ setup(
         "setuptools",
         # -*- Extra requirements: -*-
         "plone.restapi",
+        "souper",
         "souper.plone",
-        "node==0.9.25",
-        "node.ext.ugm==0.9.12",
-        "node.ext.zodb==1.4",
+        # "node==0.9.25",
+        # "node.ext.ugm==0.9.12",
+        # "node.ext.zodb==1.4",
         "clms.addon",
     ],
     extras_require={
