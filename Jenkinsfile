@@ -106,6 +106,7 @@ pipeline {
               script {
                 sh '''mkdir -p xunit-reports'''
                 try {
+                  sh '''docker pull eeacms/plone-test:6'''
                   sh '''docker run -i --name="$BUILD_TAG-python3" -e GIT_NAME=$GIT_NAME -e GIT_BRANCH="$BRANCH_NAME" -e ADDONS="$GIT_NAME" -e DEVELOP="src/$GIT_NAME" -e GIT_CHANGE_ID="$CHANGE_ID" eeacms/plone-test:6  coverage'''
                   sh '''docker cp $BUILD_TAG-python3:/plone/instance/parts/xmltestreport/testreports/. xunit-reports/'''
                   stash name: "xunit-reports", includes: "xunit-reports/*.xml"
