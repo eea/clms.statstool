@@ -18,16 +18,15 @@ setup(
     long_description_content_type="text/x-rst",
     long_description=(
         # pylint: disable=line-too-long
-        open("README.rst").read() + "\n" +
-        open(os.path.join("docs", "HISTORY.txt")).read()  # noqa
+        open("README.rst").read() + "\n" + open(os.path.join("docs", "HISTORY.txt")).read()  # noqa
     ),
     classifiers=[
         "Environment :: Web Environment",
         "Framework :: Plone",
         "Framework :: Plone :: Addon",
-        "Framework :: Plone :: 5.2",
+        "Framework :: Plone :: 6.0",
         "Programming Language :: Python",
-        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.11",
         "Operating System :: OS Independent",
         "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
     ],
