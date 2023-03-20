@@ -49,6 +49,7 @@ class UserStatsByDate(Service):
                             sector_of_activity=get_sector_of_activity(
                                 user.getProperty("sector_of_activity")
                             ),
+                            user_id=user.getId(),
                         )
                         results.append(user_data)
 
