@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 """ A utility to manage user stats"""
+from datetime import datetime
+
 from plone import api
 from repoze.catalog.query import Eq
 from souper.soup import Record, get_soup
 from zope.interface import Interface, implementer
-
-from datetime import datetime
 
 SOUP_NAME = "clms.statstool.users"
 

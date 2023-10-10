@@ -3,22 +3,9 @@
 from datetime import datetime
 from logging import getLogger
 
-from plone import api
-from plone.restapi.services import Service
-
-from clms.statstool.restapi.utils import (
-    get_country,
-    get_affiliation,
-    get_thematic_activity,
-    get_sector_of_activity,
-)
-
-from clms.statstool.restapi.utils import (
-    get_affiliation,
-    get_country,
-    get_sector_of_activity,
-    get_thematic_activity,
-)
+from clms.statstool.restapi.utils import (get_affiliation, get_country,
+                                          get_sector_of_activity,
+                                          get_thematic_activity)
 from clms.statstool.userstats import IUserStatsUtility
 from plone import api
 from plone.restapi.services import Service
