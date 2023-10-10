@@ -35,8 +35,8 @@ class UserStatsUtility:
             record = next(records)
             record.attrs.update(
                 {
-                    "last_login_time": last_login_time
-                    or datetime.utcnow().isoformat()
+                    # pylint: disable=line-too-long
+                    "last_login_time": last_login_time or datetime.utcnow().isoformat()  # noqa
                 }
             )
             soup.reindex(records=[record])
@@ -45,11 +45,10 @@ class UserStatsUtility:
             record.attrs.update(
                 {
                     "userid": userid,
-                    "last_login_time": last_login_time
-                    or datetime.utcnow().isoformat(),
-                    "initial_login_time": initial_login_time
-                    or last_login_time
-                    or datetime.utcnow().isoformat(),
+                    # pylint: disable=line-too-long
+                    "last_login_time": last_login_time or datetime.utcnow().isoformat(),  # noqa
+                    # pylint: disable=line-too-long
+                    "initial_login_time": initial_login_time or last_login_time or datetime.utcnow().isoformat(),  # noqa
                 }
             )
             soup.add(record)
