@@ -23,3 +23,21 @@ class StatsCatalogFactory:
         catalog["item_registration_date"] = CatalogFieldIndex(startdateindexer)
 
         return catalog
+
+
+@implementer(ICatalogFactory)
+class UserStatsCatalogFactory:
+    """catalog factory"""
+
+    def __call__(self, context=None):
+        """create and return a catalog"""
+        catalog = Catalog()
+        idindexer = NodeAttributeIndexer("userid")
+        userindexer = NodeAttributeIndexer("last_login_time")
+        startdateindexer = NodeAttributeIndexer("initial_login_time")
+
+        catalog["userid"] = CatalogFieldIndex(idindexer)
+        catalog["last_login_time"] = CatalogFieldIndex(userindexer)
+        catalog["initial_login_time"] = CatalogFieldIndex(startdateindexer)
+
+        return catalog
