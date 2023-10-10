@@ -3,15 +3,13 @@
 from datetime import datetime
 from logging import getLogger
 
+from clms.statstool.restapi.utils import (get_affiliation, get_country,
+                                          get_sector_of_activity,
+                                          get_thematic_activity)
+from clms.statstool.userstats import IUserStatsUtility
 from plone import api
 from plone.restapi.services import Service
-
-from clms.statstool.restapi.utils import (
-    get_country,
-    get_affiliation,
-    get_thematic_activity,
-    get_sector_of_activity,
-)
+from zope.component import getUtility
 
 log = getLogger(__name__)
 
@@ -22,10 +20,17 @@ class UserStatsByDate(Service):
     def reply(self):
         """return the JSON"""
         date = self.request.get("date", None)
+        util = getUtility(IUserStatsUtility)
+        soup = util.get_soup()
+        results = []
         if date is not None:
             results = []
-            for user in api.user.get_users():
+            for key in soup.data:
+                record = soup.get(key)
                 try:
+                    userid = record.attrs.get("userid")
+                    user = api.user.get(userid=userid)
+
                     login_time = user.getProperty(
                         "initial_login_time"
                     ).ISO8601()
@@ -33,7 +38,6 @@ class UserStatsByDate(Service):
                     login_time_date_isoformat = (
                         dt_login_time.date().isoformat()
                     )
-                    log.info(login_time_date_isoformat)
                     if login_time_date_isoformat == date:
                         user_data = {}
                         user_data = dict(

@@ -27,7 +27,7 @@ class ClmsStatstoolLayer(PloneSandboxLayer):
         self.loadZCML(package=clms.statstool)
 
     def setUpPloneSite(self, portal):
-        """ Setup cms site """
+        """Setup cms site"""
         applyProfile(portal, "clms.statstool:default")
 
 

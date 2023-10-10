@@ -18,8 +18,23 @@
     />
 
   <utility
+    provides=".userstats.IUserStatsUtility"
+    factory=".userstats.UserStatsUtility"
+    />
+
+  <utility
       factory=".catalog.StatsCatalogFactory"
       name="clms.statstool.soup" />
 
+  <utility
+      factory=".catalog.UserStatsCatalogFactory"
+      name="clms.statstool.users" />
+
+
+  <subscriber
+    for="Products.PluggableAuthService.interfaces.authservice.IPropertiedUser
+         Products.PluggableAuthService.interfaces.events.IUserLoggedInEvent"
+    handler=".subscriber.user_log_in"
+    />
 
 </configure>
