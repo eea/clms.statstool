@@ -13,9 +13,12 @@ from clms.statstool.restapi.utils import (
     get_sector_of_activity,
 )
 
-from clms.statstool.restapi.utils import (get_affiliation, get_country,
-                                          get_sector_of_activity,
-                                          get_thematic_activity)
+from clms.statstool.restapi.utils import (
+    get_affiliation,
+    get_country,
+    get_sector_of_activity,
+    get_thematic_activity,
+)
 from clms.statstool.userstats import IUserStatsUtility
 from plone import api
 from plone.restapi.services import Service
@@ -38,7 +41,7 @@ class UserStatsByDate(Service):
             for key in soup.data:
                 record = soup.get(key)
                 try:
-                    userid = record.attrs.get('userid')
+                    userid = record.attrs.get("userid")
                     user = api.user.get(userid=userid)
 
                     login_time = user.getProperty(

@@ -25,9 +25,7 @@ class TestSetup(unittest.TestCase):
 
     def test_product_installed(self):
         """Test if clms.statstool is installed."""
-        self.assertTrue(
-            self.installer.is_product_installed("clms.statstool")
-        )
+        self.assertTrue(self.installer.is_product_installed("clms.statstool"))
 
     def test_browserlayer(self):
         """Test that IClmsStatstoolLayer is registered."""
@@ -35,7 +33,7 @@ class TestSetup(unittest.TestCase):
 
 
 class TestUninstall(unittest.TestCase):
-    """ test uninstall base class"""
+    """test uninstall base class"""
 
     layer = CLMS_STATSTOOL_INTEGRATION_TESTING
 
@@ -50,9 +48,7 @@ class TestUninstall(unittest.TestCase):
 
     def test_product_uninstalled(self):
         """Test if clms.statstool is cleanly uninstalled."""
-        self.assertFalse(
-            self.installer.is_product_installed("clms.statstool")
-        )
+        self.assertFalse(self.installer.is_product_installed("clms.statstool"))
 
     def test_browserlayer_removed(self):
         """Test that IClmsStatstoolLayer is removed."""

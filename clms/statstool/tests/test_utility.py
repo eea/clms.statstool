@@ -9,30 +9,28 @@ from zope.component import getUtility
 
 
 class TestUtility(unittest.TestCase):
-    """ base class for testing """
+    """base class for testing"""
 
     layer = CLMS_STATSTOOL_INTEGRATION_TESTING
 
     def setUp(self):
-        """ setup """
+        """setup"""
         self.portal = self.layer["portal"]
         self.utility = getUtility(IDownloadStatsUtility)
 
     def test_register_item_fails_without_taskid(self):
-        """ TaskID is a required parameter"""
+        """TaskID is a required parameter"""
         data_dict = {"key1": "value1", "key2": "value2"}
-        self.assertRaises(
-            KeyError, self.utility.register_item, data_dict
-        )
+        self.assertRaises(KeyError, self.utility.register_item, data_dict)
 
     def test_register_item(self):
-        """ test register item"""
+        """test register item"""
         data_dict = {"key1": "value1", "key2": "value2", "TaskID": "123"}
         result = self.utility.register_item(data_dict)
         self.assertEqual(list(result.values())[0], data_dict)
 
     def test_get_item(self):
-        """ test get item """
+        """test get item"""
         data_dict = {"key1": "value1", "key2": "value2", "TaskID": "123"}
         result_1 = self.utility.register_item(data_dict)
         key = list(result_1.keys())[0]
@@ -42,12 +40,12 @@ class TestUtility(unittest.TestCase):
         self.assertEqual(result, data_dict)
 
     def test_unexisting_item_get(self):
-        """ get an unexisting item """
+        """get an unexisting item"""
         result = self.utility.get_item("123")
         self.assertEqual(result, "Error, task not found")
 
     def test_modify_item(self):
-        """ modify an existing item"""
+        """modify an existing item"""
         data_dict = {"key1": "value1", "key2": "value2", "TaskID": "123"}
         result_1 = self.utility.register_item(data_dict)
         key = list(result_1.keys())[0]
@@ -58,7 +56,7 @@ class TestUtility(unittest.TestCase):
         self.assertEqual(result_2, data_dict)
 
     def test_modify_unexisting_item(self):
-        """ modifying an unexisting item returns an error"""
+        """modifying an unexisting item returns an error"""
         data_dict = {"key1": "value1", "key2": "value2", "TaskID": "123"}
         result = self.utility.patch_item(data_dict, "123")
         self.assertEqual(result, "Error, task_id not registered")

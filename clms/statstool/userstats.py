@@ -7,45 +7,56 @@ from zope.interface import Interface, implementer
 
 from datetime import datetime
 
-SOUP_NAME = 'clms.statstool.users'
+SOUP_NAME = "clms.statstool.users"
 
 
 class IUserStatsUtility(Interface):
-    """ interface for the user stats utility"""
+    """interface for the user stats utility"""
+
 
 @implementer(IUserStatsUtility)
 class UserStatsUtility:
-    """ a utility to capsulate all user stats operations"""
+    """a utility to capsulate all user stats operations"""
 
     def get_soup(self):
-        """ utility method to get the soup where data will be recorded"""
+        """utility method to get the soup where data will be recorded"""
         portal = api.portal.get()
         return get_soup(SOUP_NAME, portal)
 
-    def register_login(self, userid, last_login_time=None, initial_login_time=None):
-        """ register a login data in the soup"""
+    def register_login(
+        self, userid, last_login_time=None, initial_login_time=None
+    ):
+        """register a login data in the soup"""
         soup = self.get_soup()
         records = soup.query(Eq("userid", userid), with_size=True)
         size = next(records)
 
         if size.total:
             record = next(records)
-            record.attrs.update({'last_login_time': last_login_time or datetime.utcnow().isoformat()})
+            record.attrs.update(
+                {
+                    "last_login_time": last_login_time
+                    or datetime.utcnow().isoformat()
+                }
+            )
             soup.reindex(records=[record])
         else:
             record = Record()
-            record.attrs.update({
-                'userid': userid,
-                'last_login_time': last_login_time or datetime.utcnow().isoformat(),
-                'initial_login_time': initial_login_time or last_login_time or datetime.utcnow().isoformat(),
-            })
+            record.attrs.update(
+                {
+                    "userid": userid,
+                    "last_login_time": last_login_time
+                    or datetime.utcnow().isoformat(),
+                    "initial_login_time": initial_login_time
+                    or last_login_time
+                    or datetime.utcnow().isoformat(),
+                }
+            )
             soup.add(record)
 
         return True
 
-
-
     def delete_data(self):
-        """ delete all stats data"""
+        """delete all stats data"""
         soup = self.get_soup()
         soup.clear()
