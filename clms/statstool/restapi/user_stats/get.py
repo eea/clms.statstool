@@ -35,7 +35,8 @@ class UserStats(Service):
                 login_time_date_isoformat = ""
                 if isinstance(login_time, str) and login_time:
                     dt_login_time = datetime.fromisoformat(login_time)
-                    login_time_date_isoformat = dt_login_time.date().isoformat()
+                    login_time_date_isoformat = \
+                        dt_login_time.date().isoformat()
 
                 user_data = {}
                 user_data = dict(
