@@ -4,9 +4,12 @@ from datetime import datetime
 from logging import getLogger
 from repoze.catalog.query import Contains
 
-from clms.statstool.restapi.utils import (get_affiliation, get_country,
-                                          get_sector_of_activity,
-                                          get_thematic_activity)
+from clms.statstool.restapi.utils import (
+    get_affiliation,
+    get_country,
+    get_sector_of_activity,
+    get_thematic_activity,
+)
 from clms.statstool.userstats import IUserStatsUtility
 from plone import api
 from plone.restapi.services import Service
@@ -26,7 +29,9 @@ class UserStatsByDate(Service):
         results = []
         if date is not None:
             results = []
-            query_results = soup.query(Contains('initial_login_time', date), with_size=True)
+            query_results = soup.query(
+                Contains("initial_login_time", date), with_size=True
+            )
             count = next(query_results)
             if count:
                 for record in query_results:
@@ -46,7 +51,9 @@ class UserStatsByDate(Service):
                             user_data = dict(
                                 registration_date=login_time_date_isoformat,
                                 # pylint: disable=line-too-long
-                                country=get_country(user.getProperty("country")),
+                                country=get_country(
+                                    user.getProperty("country")
+                                ),
                                 affiliation=get_affiliation(
                                     user.getProperty("affiliation")
                                 ),
@@ -68,7 +75,6 @@ class UserStatsByDate(Service):
 
         self.request.response.setStatus(400)
         return {"status": "error", "msg": "Error, date parameter not defined"}
-
 
     def old_reply(self):
         """return the JSON"""
