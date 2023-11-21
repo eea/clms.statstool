@@ -2,8 +2,9 @@
 # -*- coding: utf-8 -*-
 from repoze.catalog.catalog import Catalog
 from repoze.catalog.indexes.field import CatalogFieldIndex
+from repoze.catalog.indexes.text import CatalogTextIndex
 from souper.interfaces import ICatalogFactory
-from souper.soup import NodeAttributeIndexer
+from souper.soup import NodeAttributeIndexer, NodeTextIndexer
 from zope.interface import implementer
 
 
@@ -33,11 +34,11 @@ class UserStatsCatalogFactory:
         """create and return a catalog"""
         catalog = Catalog()
         idindexer = NodeAttributeIndexer("userid")
-        userindexer = NodeAttributeIndexer("last_login_time")
-        startdateindexer = NodeAttributeIndexer("initial_login_time")
+        userindexer = NodeTextIndexer("last_login_time")
+        startdateindexer = NodeTextIndexer("initial_login_time")
 
         catalog["userid"] = CatalogFieldIndex(idindexer)
-        catalog["last_login_time"] = CatalogFieldIndex(userindexer)
-        catalog["initial_login_time"] = CatalogFieldIndex(startdateindexer)
+        catalog["last_login_time"] = CatalogTextIndex(userindexer)
+        catalog["initial_login_time"] = CatalogTextIndex(startdateindexer)
 
         return catalog

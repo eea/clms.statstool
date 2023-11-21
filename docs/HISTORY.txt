@@ -1,6 +1,11 @@
 Changelog
 =========
 
+3.0 - (2023-11-21)
+---------------------------
+* Change: Develop
+  [erral]
+
 2.9 - (2023-10-23)
 ---------------------------
 * Change: use land.copernicus.eu tag [erral]
