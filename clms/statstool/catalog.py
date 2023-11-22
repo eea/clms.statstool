@@ -1,10 +1,12 @@
 """ catalog implementation for soup"""
 # -*- coding: utf-8 -*-
+from datetime import datetime
+
 from repoze.catalog.catalog import Catalog
 from repoze.catalog.indexes.field import CatalogFieldIndex
 from repoze.catalog.indexes.text import CatalogTextIndex
 from souper.interfaces import ICatalogFactory
-from souper.soup import NodeAttributeIndexer, NodeTextIndexer
+from souper.soup import NodeAttributeIndexer
 from zope.interface import implementer
 
 
@@ -26,6 +28,27 @@ class StatsCatalogFactory:
         return catalog
 
 
+def datetime_indexer(value):
+    """return a date value in isoformat
+    based on an original datetime value in isoformat
+    """
+    try:
+        dt_value = datetime.fromisoformat(value)
+        return dt_value.date().isoformat()
+    except ValueError:
+        return value
+
+
+def datetime_indexer_last_login_time(obj, default):
+    """index value for last_login_time"""
+    return datetime_indexer(obj.attrs.get("last_login_time", ""))
+
+
+def datetime_indexer_initial_login_time(obj, default):
+    """index value for initial_login_time"""
+    return datetime_indexer(obj.attrs.get("initial_login_time", ""))
+
+
 @implementer(ICatalogFactory)
 class UserStatsCatalogFactory:
     """catalog factory"""
@@ -34,11 +57,13 @@ class UserStatsCatalogFactory:
         """create and return a catalog"""
         catalog = Catalog()
         idindexer = NodeAttributeIndexer("userid")
-        userindexer = NodeTextIndexer("last_login_time")
-        startdateindexer = NodeTextIndexer("initial_login_time")
 
         catalog["userid"] = CatalogFieldIndex(idindexer)
-        catalog["last_login_time"] = CatalogTextIndex(userindexer)
-        catalog["initial_login_time"] = CatalogTextIndex(startdateindexer)
+        catalog["last_login_time"] = CatalogTextIndex(
+            datetime_indexer_last_login_time
+        )
+        catalog["initial_login_time"] = CatalogTextIndex(
+            datetime_indexer_initial_login_time
+        )
 
         return catalog
