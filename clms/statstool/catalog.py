@@ -39,14 +39,14 @@ def datetime_indexer(value):
         return value
 
 
-def datetime_indexer_last_login_time(object, default):
+def datetime_indexer_last_login_time(obj, default):
     """index value for last_login_time"""
-    return datetime_indexer(object.attrs.get("last_login_time", ""))
+    return datetime_indexer(obj.attrs.get("last_login_time", ""))
 
 
-def datetime_indexer_initial_login_time(object, default):
+def datetime_indexer_initial_login_time(obj, default):
     """index value for initial_login_time"""
-    return datetime_indexer(object.attrs.get("initial_login_time", ""))
+    return datetime_indexer(obj.attrs.get("initial_login_time", ""))
 
 
 @implementer(ICatalogFactory)
@@ -57,8 +57,6 @@ class UserStatsCatalogFactory:
         """create and return a catalog"""
         catalog = Catalog()
         idindexer = NodeAttributeIndexer("userid")
-        userindexer = NodeTextIndexer("last_login_time")
-        startdateindexer = NodeTextIndexer("initial_login_time")
 
         catalog["userid"] = CatalogFieldIndex(idindexer)
         catalog["last_login_time"] = CatalogTextIndex(
