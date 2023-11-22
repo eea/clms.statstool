@@ -1,13 +1,13 @@
 """ catalog implementation for soup"""
 # -*- coding: utf-8 -*-
+from datetime import datetime
+
 from repoze.catalog.catalog import Catalog
 from repoze.catalog.indexes.field import CatalogFieldIndex
 from repoze.catalog.indexes.text import CatalogTextIndex
 from souper.interfaces import ICatalogFactory
 from souper.soup import NodeAttributeIndexer, NodeTextIndexer
 from zope.interface import implementer
-
-from datetime import datetime
 
 
 @implementer(ICatalogFactory)
