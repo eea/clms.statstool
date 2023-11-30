@@ -59,10 +59,10 @@ class UserStatsCatalogFactory:
         idindexer = NodeAttributeIndexer("userid")
 
         catalog["userid"] = CatalogFieldIndex(idindexer)
-        catalog["last_login_time"] = CatalogTextIndex(
+        catalog["last_login_time"] = CatalogFieldIndex(
             datetime_indexer_last_login_time
         )
-        catalog["initial_login_time"] = CatalogTextIndex(
+        catalog["initial_login_time"] = CatalogFieldIndex(
             datetime_indexer_initial_login_time
         )
 
