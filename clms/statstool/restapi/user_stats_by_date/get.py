@@ -141,4 +141,10 @@ class UserStatsByLoginDate(BaseService):
 
 def get_date_as_iso(value):
     """ get a date in isoformat based on DateTime"""
-    return value.utcdatetime().date().isoformat()
+    if isinstance(value, str):
+        try:
+            return value.utcdatetime().date().isoformat()
+        except ValueError:
+            return ""
+
+    return ""
