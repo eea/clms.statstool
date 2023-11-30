@@ -114,7 +114,9 @@ def test_search_by_not_existing_date(self):
 
     transaction.commit()
 
-    response = self.api_session.get("/@download_stats_by_date?date=2020-02-17")
+    response = self.api_session.get(
+        "/@download_stats_by_date?date=2020-02-17"
+    )
 
     self.assertEqual(response.status_code, 200)
     result = response.json()
