@@ -4,7 +4,6 @@ from datetime import datetime
 
 from repoze.catalog.catalog import Catalog
 from repoze.catalog.indexes.field import CatalogFieldIndex
-from repoze.catalog.indexes.text import CatalogTextIndex
 from souper.interfaces import ICatalogFactory
 from souper.soup import NodeAttributeIndexer
 from zope.interface import implementer
@@ -59,10 +58,10 @@ class UserStatsCatalogFactory:
         idindexer = NodeAttributeIndexer("userid")
 
         catalog["userid"] = CatalogFieldIndex(idindexer)
-        catalog["last_login_time"] = CatalogTextIndex(
+        catalog["last_login_time"] = CatalogFieldIndex(
             datetime_indexer_last_login_time
         )
-        catalog["initial_login_time"] = CatalogTextIndex(
+        catalog["initial_login_time"] = CatalogFieldIndex(
             datetime_indexer_initial_login_time
         )
 
