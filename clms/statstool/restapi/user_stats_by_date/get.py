@@ -91,10 +91,16 @@ class BaseService(Service):
                     )
 
                     user_data = dict(
-                        last_login_date=get_date_as_iso(user_property_last_login_time),
-                        registration_date=get_date_as_iso(user_property_initial_login_time),
+                        last_login_date=get_date_as_iso(
+                            user_property_last_login_time
+                        ),
+                        registration_date=get_date_as_iso(
+                            user_property_initial_login_time
+                        ),
                         country=get_country(user_property_country),
-                        affiliation=get_affiliation(user_property_affiliation),
+                        affiliation=get_affiliation(
+                            user_property_affiliation
+                        ),
                         thematic_activity=get_thematic_activity(
                             user_property_thematic_activity
                         ),
