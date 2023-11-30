@@ -35,8 +35,7 @@ class UserStatsUtility:
             record = next(records)
             record.attrs.update(
                 {
-                    # pylint: disable=line-too-long
-                    "last_login_time": last_login_time or datetime.utcnow().isoformat()  # noqa
+                    "last_login_time": last_login_time or get_now()
                 }
             )
             soup.reindex(records=[record])
@@ -45,10 +44,9 @@ class UserStatsUtility:
             record.attrs.update(
                 {
                     "userid": userid,
+                    "last_login_time": last_login_time or get_now(),
                     # pylint: disable=line-too-long
-                    "last_login_time": last_login_time or datetime.utcnow().isoformat(),  # noqa
-                    # pylint: disable=line-too-long
-                    "initial_login_time": initial_login_time or last_login_time or datetime.utcnow().isoformat(),  # noqa
+                    "initial_login_time": initial_login_time or last_login_time or get_now(),  # noqa
                 }
             )
             soup.add(record)
@@ -62,11 +60,13 @@ class UserStatsUtility:
 
     def _get_data_by(self, index, value):
         """single method to do all catalog queries"""
+
         soup = self.get_soup()
         results = soup.query(Eq(index, value))
         data = []
         for item in results:
             data.append(dict(item.attrs))
+
         return data
 
     def search_items_by_registration_date(self, date):
@@ -80,3 +80,12 @@ class UserStatsUtility:
     def search_items_by_userid(self, userid):
         """search users by userid"""
         return self._get_data_by("userid", userid)
+
+    def get_data_count(self):
+        """return the item count"""
+        return len(self.get_soup().data)
+
+
+def get_now():
+    """get current date in iso format"""
+    return datetime.utcnow().date().isoformat()

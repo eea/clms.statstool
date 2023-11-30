@@ -9,6 +9,7 @@ from plone.app.testing import PloneSandboxLayer
 from plone.testing.zope import WSGI_SERVER_FIXTURE
 
 import clms.statstool
+import clms.addon
 import plone.restapi
 
 
@@ -25,6 +26,7 @@ class ClmsStatstoolLayer(PloneSandboxLayer):
 
         self.loadZCML(package=plone.restapi)
         self.loadZCML(package=clms.statstool)
+        self.loadZCML(package=clms.addon)
 
     def setUpPloneSite(self, portal):
         """Setup cms site"""
