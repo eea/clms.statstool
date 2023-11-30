@@ -59,3 +59,24 @@ class UserStatsUtility:
         """delete all stats data"""
         soup = self.get_soup()
         soup.clear()
+
+    def _get_data_by(self, index, value):
+        """single method to do all catalog queries"""
+        soup = self.get_soup()
+        results = soup.query(Eq(index, value))
+        data = []
+        for item in results:
+            data.append(dict(item.attrs))
+        return data
+
+    def search_items_by_registration_date(self, date):
+        """search users by registration date"""
+        return self._get_data_by("initial_login_time", date)
+
+    def search_items_by_login_date(self, date):
+        """search users by login date"""
+        return self._get_data_by("last_login_time", date)
+
+    def search_items_by_userid(self, userid):
+        """search users by userid"""
+        return self._get_data_by("userid", userid)
