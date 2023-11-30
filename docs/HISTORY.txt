@@ -1,13 +1,13 @@
 Changelog
 =========
 
-3.3 - (2023-11-30)
+3.4 - (2023-11-30)
 ---------------------------
 * Change: feat: add more tests [erral]
 
 3.3 - (2023-11-30)
 ---------------------------
-* Change: feat: add more tests
+* Change: Develop
   [erral]
 
 3.2 - (2023-11-22)
