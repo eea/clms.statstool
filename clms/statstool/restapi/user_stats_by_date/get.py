@@ -139,7 +139,6 @@ class UserStatsByLoginDate(BaseService):
         return util.search_items_by_login_date(date)
 
 
-
 def get_date_as_iso(value):
     """ get a date in isoformat based on DateTime"""
     return value.utcdatetime().date().isoformat()
