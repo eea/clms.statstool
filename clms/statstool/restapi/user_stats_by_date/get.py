@@ -13,7 +13,6 @@ from zope.component import getUtility
 log = getLogger(__name__)
 
 
-
 class BaseService(Service):
     """Base service"""
 
@@ -92,13 +91,8 @@ class BaseService(Service):
                     )
 
                     user_data = dict(
-                        last_login_date=user_property_last_login_time.utcdatetime()
-                        .date()
-                        .isoformat(),
-                        registration_date=user_property_initial_login_time.utcdatetime()
-                        .date()
-                        .isoformat(),
-                        # pylint: disable=line-too-long
+                        last_login_date=get_date_as_iso(user_property_last_login_time),
+                        registration_date=get_date_as_iso(user_property_initial_login_time),
                         country=get_country(user_property_country),
                         affiliation=get_affiliation(user_property_affiliation),
                         thematic_activity=get_thematic_activity(
@@ -137,3 +131,9 @@ class UserStatsByLoginDate(BaseService):
         """get the users by login date"""
         util = getUtility(IUserStatsUtility)
         return util.search_items_by_login_date(date)
+
+
+
+def get_date_as_iso(value):
+    """ get a date in isoformat based on DateTime"""
+    return value.utcdatetime().date().isoformat()
