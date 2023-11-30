@@ -1,17 +1,25 @@
 <configure
-  xmlns="http://namespaces.zope.org/zope"
-  xmlns:plone="http://namespaces.plone.org/plone"
-  i18n_domain="clms.statstool">
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="clms.statstool"
+    >
 
-  <include package="plone.restapi"  />
+  <include package="plone.restapi" />
 
   <plone:service
-    method="GET"
-    name="@user_stats_by_date"
-    factory=".get.UserStatsByDate"
-    permission="clms.statstool.QueryStats"
-    for="Products.CMFCore.interfaces.ISiteRoot"
-    />
+      method="GET"
+      factory=".get.UserStatsByRegistrationDate"
+      for="Products.CMFCore.interfaces.ISiteRoot"
+      permission="clms.statstool.QueryStats"
+      name="@user_stats_by_date"
+      />
 
+  <plone:service
+      method="GET"
+      factory=".get.UserStatsByLoginDate"
+      for="Products.CMFCore.interfaces.ISiteRoot"
+      permission="clms.statstool.QueryStats"
+      name="@user_stats_by_date_of_login"
+      />
 
 </configure>
