@@ -80,3 +80,7 @@ class UserStatsUtility:
     def search_items_by_userid(self, userid):
         """search users by userid"""
         return self._get_data_by("userid", userid)
+
+    def get_data_count(self):
+        """ return the item count """
+        return len(self.get_soup().data)

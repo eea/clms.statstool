@@ -60,3 +60,4 @@ class TestUtility(unittest.TestCase):
         data_dict = {"key1": "value1", "key2": "value2", "TaskID": "123"}
         result = self.utility.patch_item(data_dict, "123")
         self.assertEqual(result, "Error, task_id not registered")
+
