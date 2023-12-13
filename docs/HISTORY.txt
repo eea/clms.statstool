@@ -1,6 +1,9 @@
 Changelog
 =========
 
+3.6-dev0 - (unreleased)
+---------------------------
+
 3.5 - (2023-12-13)
 ---------------------------
 * Change: fix: fix datetime conversion [erral]
