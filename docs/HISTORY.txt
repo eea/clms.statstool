@@ -1,6 +1,10 @@
 Changelog
 =========
 
+3.5 - (2023-12-13)
+---------------------------
+* Change: fix: fix datetime conversion [erral]
+
 3.4 - (2023-11-30)
 ---------------------------
 * Change: feat: add more tests [erral]
