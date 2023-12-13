@@ -9,6 +9,7 @@ from clms.statstool.userstats import IUserStatsUtility
 from plone import api
 from plone.restapi.services import Service
 from zope.component import getUtility
+from DateTime import DateTime
 
 log = getLogger(__name__)
 
@@ -141,7 +142,7 @@ class UserStatsByLoginDate(BaseService):
 
 def get_date_as_iso(value):
     """ get a date in isoformat based on DateTime"""
-    if isinstance(value, str):
+    if isinstance(value, DateTime):
         try:
             return value.utcdatetime().date().isoformat()
         except ValueError:
