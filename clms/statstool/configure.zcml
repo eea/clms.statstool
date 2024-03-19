@@ -1,7 +1,8 @@
 <configure
-  xmlns="http://namespaces.zope.org/zope"
-  xmlns:i18n="http://namespaces.zope.org/i18n"
-  i18n_domain="clms.statstool">
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    i18n_domain="clms.statstool"
+    >
 
   <i18n:registerTranslations directory="locales" />
 
@@ -13,28 +14,30 @@
   <include package=".upgrades" />
 
   <utility
-    provides=".utility.IDownloadStatsUtility"
-    factory=".utility.DownloadStatsUtility"
-    />
+      factory=".utility.DownloadStatsUtility"
+      provides=".utility.IDownloadStatsUtility"
+      />
 
   <utility
-    provides=".userstats.IUserStatsUtility"
-    factory=".userstats.UserStatsUtility"
-    />
+      factory=".userstats.UserStatsUtility"
+      provides=".userstats.IUserStatsUtility"
+      />
 
   <utility
       factory=".catalog.StatsCatalogFactory"
-      name="clms.statstool.soup" />
+      name="clms.statstool.soup"
+      />
 
   <utility
       factory=".catalog.UserStatsCatalogFactory"
-      name="clms.statstool.users" />
+      name="clms.statstool.users"
+      />
 
 
   <subscriber
-    for="Products.PluggableAuthService.interfaces.authservice.IPropertiedUser
-         Products.PluggableAuthService.interfaces.events.IUserLoggedInEvent"
-    handler=".subscriber.user_log_in"
-    />
+      for="*
+           Products.PluggableAuthService.interfaces.events.IUserLoggedInEvent"
+      handler=".subscriber.user_log_in"
+      />
 
 </configure>

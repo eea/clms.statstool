@@ -1,6 +1,11 @@
 Changelog
 =========
 
+3.6 - (2024-03-19)
+---------------------------
+* Change: Develop
+  [erral]
+
 3.5 - (2023-12-13)
 ---------------------------
 * Change: fix: fix datetime conversion [erral]
