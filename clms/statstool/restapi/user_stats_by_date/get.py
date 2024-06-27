@@ -131,8 +131,7 @@ class UserStatsByRegistrationDate(BaseService):
         """get property for user"""
         if property_name == 'initial_login_time' and record:
             return record['initial_login_time']
-        return super(UserStatsByRegistrationDate, self).get_property(
-            userid, property_name, record)
+        return super().get_property(userid, property_name, record)
 
     def get_users_by_date(self, date):
         """get the users by registration date"""
@@ -147,8 +146,7 @@ class UserStatsByLoginDate(BaseService):
         """get property for user"""
         if property_name == 'initial_login_time' and record:
             return record['initial_login_time']
-        return super(UserStatsByLoginDate, self).get_property(
-            userid, property_name, record)
+        return super().get_property(userid, property_name, record)
 
     def get_users_by_date(self, date):
         """get the users by login date"""
@@ -164,7 +162,7 @@ def get_date_as_iso(value):
         except ValueError:
             return ""
     elif isinstance(value, str):
-        # in the souper the registration dates are stored as simple date strings
+        # in the souper registration dates are stored as simple date strings
         return value
         # from datetime import datetime
         # date_obj = datetime.strptime(value, "%Y-%m-%d"
