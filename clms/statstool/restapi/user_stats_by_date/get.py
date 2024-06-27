@@ -2,14 +2,15 @@
 # -*- coding: utf-8 -*-
 from logging import getLogger
 
+from DateTime import DateTime
+from plone import api
+from plone.restapi.services import Service
+from zope.component import getUtility
+
 from clms.statstool.restapi.utils import (get_affiliation, get_country,
                                           get_sector_of_activity,
                                           get_thematic_activity)
 from clms.statstool.userstats import IUserStatsUtility
-from plone import api
-from plone.restapi.services import Service
-from zope.component import getUtility
-from DateTime import DateTime
 
 log = getLogger(__name__)
 
@@ -56,7 +57,7 @@ class BaseService(Service):
         # pylint: disable=protected-access
         return property_manager._storage.get(userid, {}).get(property_name)
 
-    def get_property(self, userid, property_name):
+    def get_property(self, userid, property_name, record=None):
         """get property for user"""
         return self.get_property_from_acl_users(userid, property_name)
 
@@ -64,6 +65,7 @@ class BaseService(Service):
         """return the JSON"""
         date = self.request.get("date", None)
         results = []
+
         if date is not None:
             results = []
             query_results = self.get_users_by_date(date)
@@ -73,22 +75,22 @@ class BaseService(Service):
                     userid = record.get("userid")
                     user_data = {}
                     user_property_last_login_time = self.get_property(
-                        userid, "last_login_time"
+                        userid, "last_login_time", record
                     )
                     user_property_initial_login_time = self.get_property(
-                        userid, "initial_login_time"
+                        userid, "initial_login_time", record
                     )
                     user_property_country = self.get_property(
-                        userid, "country"
+                        userid, "country", record
                     )
                     user_property_affiliation = self.get_property(
-                        userid, "affiliation"
+                        userid, "affiliation", record
                     )
                     user_property_thematic_activity = self.get_property(
-                        userid, "thematic_activity"
+                        userid, "thematic_activity", record
                     )
                     user_property_sector_of_activity = self.get_property(
-                        userid, "sector_of_activity"
+                        userid, "sector_of_activity", record
                     )
 
                     user_data = dict(
@@ -125,6 +127,12 @@ class BaseService(Service):
 class UserStatsByRegistrationDate(BaseService):
     """User stats service"""
 
+    def get_property(self, userid, property_name, record=None):
+        """get property for user"""
+        if property_name == 'initial_login_time' and record:
+            return record['initial_login_time']
+        return super().get_property(userid, property_name, record)
+
     def get_users_by_date(self, date):
         """get the users by registration date"""
         util = getUtility(IUserStatsUtility)
@@ -133,6 +141,12 @@ class UserStatsByRegistrationDate(BaseService):
 
 class UserStatsByLoginDate(BaseService):
     """User stats service"""
+
+    def get_property(self, userid, property_name, record=None):
+        """get property for user"""
+        if property_name == 'initial_login_time' and record:
+            return record['initial_login_time']
+        return super().get_property(userid, property_name, record)
 
     def get_users_by_date(self, date):
         """get the users by login date"""
@@ -147,5 +161,10 @@ def get_date_as_iso(value):
             return value.utcdatetime().date().isoformat()
         except ValueError:
             return ""
+    elif isinstance(value, str):
+        # in the souper registration dates are stored as simple date strings
+        return value
+        # from datetime import datetime
+        # date_obj = datetime.strptime(value, "%Y-%m-%d"
 
     return ""
