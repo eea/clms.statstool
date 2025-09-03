@@ -109,3 +109,25 @@ class DownloadStatsUtility:
         """delete all stats data"""
         soup = self.get_soup()
         soup.clear()
+
+    def delete_item(self, task_id):
+        """delete a single stats record by task_id"""
+        soup = self.get_soup()
+
+        # Search for TaskID
+        records = soup.query(Eq("TaskID", task_id), with_size=True)
+        size = next(records)
+        if size.total >= 1:
+            record = next(records)
+            del soup.data[record.intid]
+            return f"Task {task_id} deleted successfully"
+
+        # then search for TaskId
+        records = soup.query(Eq("TaskId", task_id), with_size=True)
+        size = next(records)
+        if size.total >= 1:
+            record = next(records)
+            del soup.data[record.intid]
+            return f"Task {task_id} deleted successfully"
+
+        return f"Error, task {task_id} not found"
