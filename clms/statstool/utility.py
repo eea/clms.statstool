@@ -2,7 +2,7 @@
 """
 A utility to manage the download stats
 """
-from datetime import datetime
+from datetime import datetime, timezone
 from logging import getLogger
 
 from plone import api
@@ -16,12 +16,12 @@ SOUP_NAME = "clms.statstool.soup"
 
 def get_current_datetime():
     """utility function to return the actual UTC datetime in ISO8601 format"""
-    return datetime.utcnow().isoformat()
+    return datetime.now(timezone.utc).isoformat()
 
 
 def get_current_date():
     """utility function to return the actual UTC date in ISO8601 format"""
-    return datetime.utcnow().date().isoformat()
+    return datetime.now(timezone.utc).date().isoformat()
 
 
 class IDownloadStatsUtility(Interface):

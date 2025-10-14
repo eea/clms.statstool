@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """ A utility to manage user stats"""
-from datetime import datetime
+from datetime import datetime, timezone
 
 from plone import api
 from repoze.catalog.query import Eq
@@ -88,4 +88,4 @@ class UserStatsUtility:
 
 def get_now():
     """get current date in iso format"""
-    return datetime.utcnow().date().isoformat()
+    return datetime.now(timezone.utc).isoformat()
